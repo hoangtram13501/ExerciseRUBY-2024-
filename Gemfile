@@ -70,3 +70,13 @@ group :test do
   gem "selenium-webdriver"
 
 end
+
+gem "cssbundling-rails", "~> 1.4"
+gem 'sassc-rails'
+
+# signup login
+gem 'devise'
+gem 'devise-jwt'
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+gem 'letter_opener'

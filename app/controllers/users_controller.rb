@@ -22,8 +22,6 @@ class UsersController < ApplicationController
 
   # POST /users or /users.json
   def create
-    @user = User.new(user_params)
-
     respond_to do |format|
       if @user.save
         format.html { redirect_to @user, notice: "User was successfully created." }
@@ -50,12 +48,9 @@ class UsersController < ApplicationController
 
   # DELETE /users/1 or /users/1.json
   def destroy
+    @user = User.find(params[:id])
     @user.destroy
-
-    respond_to do |format|
-      format.html { redirect_to users_path, status: :see_other, notice: "User was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    redirect_to users_path, notice: 'User was successfully deleted.'
   end
 
   private
@@ -66,10 +61,10 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.fetch(:user, {})
+      params.require(:user).permit(:name, :email, :phone_number, :encrypted_password)
     end
 
     def user_params_update
-      params.require(:user).permit(:name, :email, :phone_number)
+      params.require(:user).permit(:name, :email, :phone_number, :encrypted_password)
     end
 end
