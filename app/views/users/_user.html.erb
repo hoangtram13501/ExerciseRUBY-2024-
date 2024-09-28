@@ -1,6 +1,9 @@
 <!-- app/views/users/_user.html.erb -->
-<div id="<%= dom_id(user) %>">
-  <p><strong>Name:</strong> <%= user.name %></p>
-  <p><strong>Email:</strong> <%= user.email %></p>
-  <p><strong>Phone Number:</strong> <%= user.phone_number %></p>
+<div id="<%= dom_id(user) %>" class="card mb-3">
+  <div class="card-body">
+    <h5 class="card-title">User Information</h5>
+    <p class="card-text"><strong>Name:</strong> <%= user.name %></p>
+    <p class="card-text"><strong>Email:</strong> <%= user.email %></p>
+    <p class="card-text"><strong>Phone Number:</strong> <%= user.phone_number %></p>
+  </div>
 </div>
