@@ -40,13 +40,13 @@
           <%= link_to "Sign up", new_registration_path(resource_name), class: "btn btn-secondary" %>
         <% end %>
 
-        <a
-          data-mdb-ripple-init
-          class="btn btn-dark px-3"
-          href="https://github.com/mdbootstrap/mdb-ui-kit"
-          role="button"
-          ><i class="fab fa-github"></i
-        ></a>
+        <% if user_signed_in? %>
+          <a data-mdb-ripple-init href="<%= manage_account_path(user_id: current_user.id) %>">
+            <div class="avatar">
+              <img src="link-to-your-avatar-image.jpg" alt="Avatar">
+            </div>
+          </a>
+        <% end %>
       </div>
     </div>
     <!-- Collapsible wrapper -->
