@@ -31,6 +31,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_10_13_094505) do
     t.integer "view"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image"
   end
 
   create_table "users", force: :cascade do |t|
