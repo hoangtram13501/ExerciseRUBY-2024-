@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:index, :show, :new, :create, :edit, :update, :destroy]
 
-  resource :posts
-  get 'account/manage', to: 'accounts#manage', as: 'manage_account'
+  namespace :api do 
+    resources :post, only: %[create]
+  end
 end
