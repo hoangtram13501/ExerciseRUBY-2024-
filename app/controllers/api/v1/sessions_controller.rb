@@ -3,6 +3,7 @@ class Api::V1::SessionsController < Devise::SessionsController
 
   def create
     data  = Session::LoginService.call(params)
+    byebug
     if data.success?
       sign_in data.result[:user]
       render json: {

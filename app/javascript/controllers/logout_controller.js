@@ -2,7 +2,10 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="logout"
 export default class extends Controller {
-    connect() {}
+    connect() {
+        console.log('Connected to the logout_controller.');
+    }
+
 
     async submit(event) {
         event.preventDefault(); // Prevent the default form submission

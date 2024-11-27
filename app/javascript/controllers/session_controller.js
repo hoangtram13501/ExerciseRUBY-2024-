@@ -5,7 +5,7 @@ export default class extends Controller {
     static targets = ["email", "password"]
 
     connect() {
-        console.log('connect to login controller js');
+        console.log('connect to session controller js');
     }
 
     async submit(event) {
@@ -13,6 +13,7 @@ export default class extends Controller {
 
         const email = this.emailTarget.value;
         const password = this.passwordTarget.value;
+        debugger;
 
         if (email && password) {
             try {
