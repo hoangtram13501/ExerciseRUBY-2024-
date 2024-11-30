@@ -5,7 +5,7 @@ export default class extends Controller {
     static targets = ["email", "password"]
 
     connect() {
-        console.log('connect to login controller js');
+        console.log('connect to session controller js');
     }
 
     async submit(event) {
@@ -29,7 +29,7 @@ export default class extends Controller {
                     const data = await response.json();
                     const token = response.headers.get('authorization');
                     localStorage.setItem('authToken', token);
-                    Turbo.visit('/staff/users');
+                    Turbo.visit('/');
                 } else {
                     const errorData = await response.json();
                     // Handle login failure (e.g., show error message)

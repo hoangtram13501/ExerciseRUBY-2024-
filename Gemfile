@@ -1,8 +1,6 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.1.3"
-
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.8"
 
@@ -74,7 +72,10 @@ group :test do
 end
 
 gem "cssbundling-rails", "~> 1.4"
+gem 'bootstrap-sass', '~> 3.3.7'
 gem 'sassc-rails'
+gem 'sass-rails'
+gem 'bootstrap'
 
 # signup login
 gem 'devise'
@@ -83,3 +84,6 @@ gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'letter_opener'
 gem 'dotenv-rails'
+gem "simple_command"
+gem "fast_jsonapi"
+gem 'mysql2'

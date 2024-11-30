@@ -2,12 +2,12 @@ class Api::V1::SessionsController < Devise::SessionsController
   respond_to :json
 
   def create
-    data  = Session::LoginService.call(params)
+    data  = Sessions::LoginService.call(params)
     if data.success?
       sign_in data.result[:user]
       render json: {
         status: {code: 200, message: data.result[:message] },
-        data: UserSerializer.new(data.result[:user]).serializers_hash
+        data: UserSerializer.new(data.result[:user]).serializable_hash
 
       } 
     else

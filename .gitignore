@@ -42,3 +42,4 @@ Gemfile.lock
 **/.env
 **/.rubocop_todo.yml
 **/.rubocop.yml
+/vendor/*
