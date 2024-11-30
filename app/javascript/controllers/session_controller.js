@@ -13,7 +13,6 @@ export default class extends Controller {
 
         const email = this.emailTarget.value;
         const password = this.passwordTarget.value;
-        debugger;
 
         if (email && password) {
             try {
@@ -30,7 +29,7 @@ export default class extends Controller {
                     const data = await response.json();
                     const token = response.headers.get('authorization');
                     localStorage.setItem('authToken', token);
-                    Turbo.visit('/staff/users');
+                    Turbo.visit('/');
                 } else {
                     const errorData = await response.json();
                     // Handle login failure (e.g., show error message)

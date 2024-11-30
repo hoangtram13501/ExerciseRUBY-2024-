@@ -84,4 +84,6 @@ gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'letter_opener'
 gem 'dotenv-rails'
-
+gem "simple_command"
+gem "fast_jsonapi"
+gem 'mysql2'
