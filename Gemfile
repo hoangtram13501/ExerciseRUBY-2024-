@@ -72,9 +72,7 @@ group :test do
 end
 
 gem "cssbundling-rails", "~> 1.4"
-gem 'bootstrap-sass', '~> 3.3.7'
 gem 'sassc-rails'
-gem 'sass-rails'
 gem 'bootstrap'
 
 # signup login
@@ -87,3 +85,6 @@ gem 'dotenv-rails'
 gem "simple_command"
 gem "fast_jsonapi"
 gem 'mysql2'
+gem "jquery-rails"
+gem "image_processing", "~> 1.2"
+gem 'kaminari'

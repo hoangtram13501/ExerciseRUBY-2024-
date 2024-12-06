@@ -1,16 +1,21 @@
-<div class="container mt-4">
-  <%= render 'devise/shared/message' %>
-
-  <div class="card">
-    <div class="card-body">
-      <%= render @user %>
-    </div>
+<div class="container mt-5">
+  <!-- Cover Photo -->
+  <div class="cover-photo" style="background-image: url('https://picsum.photos/1200/300'); height: 300px; background-size: cover; background-position: center;">
   </div>
+  <%= render 'users/shared/profile', user: @user%>
+  <%= render 'users/shared/nav_post'%>
 
-  <div class="d-flex justify-content-between mt-3">
-    <%= link_to "Edit this user", edit_user_path(@user), class: "btn btn-warning flex-grow-1 me-2" %>
-    <%= link_to "Back to users", users_path, class: "btn btn-secondary flex-grow-1 me-2" %>
-    <%= button_to "Destroy this user", @user, method: :delete, class: "btn btn-danger flex-grow-1", data: { confirm: "Are you sure?" } %>
+  <!-- Main Content -->
+  <div class="row mt-4">
+    <div class="col-md-4">
+      <%= render 'users/shared/intro'%>
+      <%= render 'users/shared/photo'%>
+    </div>
+    <div class="col-md-8">
+      <%= render 'users/shared/input_post'%>
+      <%= render 'users/shared/card'%>
+    </div>
   </div>
 </div>
 
+<%= render 'users/shared/modal/post', user: @user %>

@@ -1,0 +1,20 @@
+<div class="card mb-3">
+    <div class="card-body">
+        <div class="d-flex">
+            <%= image_tag 'https://via.placeholder.com/50.png?text=Profile', class: 'rounded-circle', alt: 'Profile', width: '50' %>
+            <input type="text" 
+            class="form-control ms-3"
+            placeholder="What's on your mind?"
+            data-controller="remote_modal"
+            data-action="click->remote_modal#isOpen"
+            data-modal-id="postModal"
+            >
+        </div>
+        <div class="mt-2 d-flex justify-content-between">
+            <button class="btn btn-outline-secondary">Live Video</button>
+            <button class="btn btn-outline-secondary">Photo/Video</button>
+            <button class="btn btn-outline-secondary">Life Event</button>
+        </div>
+
+    </div>
+</div>
