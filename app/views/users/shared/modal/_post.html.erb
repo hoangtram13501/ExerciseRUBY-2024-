@@ -1,0 +1,20 @@
+<%= render 'shared/remote_modal', 
+modal_id: 'postModal', 
+modal_label_id: 'postModalLabel', 
+modal_title: 'Post Social' do %>
+
+   <%= form_with(local: true, class: 'mx-1 mx-md-4', data: { controller: "post", action: "post#submit" }) do |f| %>
+        <div class="mb-3">
+            <label class="form-label" for="user_content">Content</label>
+            <textarea autofocus="autofocus" autocomplete="Content" class="form-control" name="post[context]" id="user_content" rows="4" cols="50" , data-post-target="context"></textarea>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="user_image">Photo</label>
+            <input autocomplete="image" class="form-control" type="file" name="post[image]" id="user_image", data-post-target="image">
+            <input class="form-control" type="hidden" name="post[wall_id]" value="<%= user.wall_id %>" id="wall_id" data-post-target="wall_id">
+        </div>
+        <div class="d-grid gap-2">
+            <input type="button" name="commit" value="Post" class="btn btn-primary" data-disable-with="Post" data-action="click->post#submit">
+        </div>
+    <% end %>
+<% end %>

@@ -1,6 +1,5 @@
 //= link_tree ../images
-//= link_directory ../stylesheets .css
 //= link_tree ../../javascript .js
- //= link popper.js
-//= link jquery.js
-
+//= link popper.js
+//= link jquery.min.js
+//= link_directory ../stylesheets .css

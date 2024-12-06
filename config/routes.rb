@@ -11,6 +11,8 @@ Rails.application.routes.draw do
       devise_for :users, controllers: {
         sessions: "api/v1/sessions"
       }
+      resources :posts, only: %i[index create]
+      resources :comments, only: %i[create]
     end
   end
 end
