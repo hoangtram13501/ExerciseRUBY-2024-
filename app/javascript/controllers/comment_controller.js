@@ -6,6 +6,7 @@ export default class extends Controller {
     connect() {}
 
     handleEnter(event) {
+        event.preventDefault();
         this.postComment();
     }
 
