@@ -28,6 +28,8 @@
     </div>
 
     <div class="d-flex justify-content-center mt-3" data-controller="comment">
+      <input class="form-control cmt-post-id" type="hidden" name="comment[post_id]" value="" id="post_id" data-comment-target="post_id">
+      <input class="form-control current_page" type="hidden" name="comment[current_page]" value="" id="current_page" data-comment-target="current_page">
         <button id="view-more-btn" 
                 class="btn btn-primary view-more-btn" 
                 data-action="click->comment#viewMoreComments">

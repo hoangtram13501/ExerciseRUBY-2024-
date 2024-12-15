@@ -1,4 +1,7 @@
 class Api::ApplicationController < ActionController::API
+  respond_to :json
+  PER_PAGE = 5
+
   def success(
     code: 200,
     serialize: nil,
