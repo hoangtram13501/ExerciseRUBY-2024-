@@ -12,7 +12,7 @@ Rails.application.routes.draw do
         sessions: "api/v1/sessions"
       }
       resources :posts, only: %i[index create]
-      resources :comments, only: %i[create]
+      resources :comments, only: %i[index create]
     end
   end
 end
