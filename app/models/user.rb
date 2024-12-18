@@ -11,6 +11,11 @@ class User < ApplicationRecord
 
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :educations, dependent: :destroy
+  has_many :experiences, dependent: :destroy
+
+  accepts_nested_attributes_for :educations, allow_destroy: true
+  accepts_nested_attributes_for :experiences, allow_destroy: true
 
   has_one_attached :avatar
 
