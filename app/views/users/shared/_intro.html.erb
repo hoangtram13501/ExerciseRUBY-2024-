@@ -1,8 +1,93 @@
-<!-- Left Sidebar -->
-  <div class="card mb-3">
-    <div class="card-body">
-      <h5>Intro</h5>
-      <p>Lives in Viet Nam</p>
-      <button class="btn btn-outline-secondary btn-sm">Edit Details</button>
+<div class="card mb-4 shadow-sm border-0">
+  <div class="card-body show-profile">
+    <!-- Intro Section -->
+    <h5 class="text-primary mb-3">Intro</h5>
+    <p id="userIntro" class="text-muted border-bottom pb-2 mb-4">
+      <%= @user.intro.present? ? @user.intro : "No intro available" %>
+    </p>
+
+    <!-- Education Section -->
+    <h5 class="text-primary mb-3">Education</h5>
+    <p id="userEducation" class="text-muted border-bottom pb-2 mb-4">
+      <% if @user.educations.any? %>
+        <% education = @user.educations.order(created_at: :desc).first %>
+        <%= education.school_name %>
+      <% else %>
+        No education details
+      <% end %>
+    </p>
+
+    <!-- Experience Section -->
+    <h5 class="text-primary mb-3">Experience</h5>
+    <p id="userExperience" class="text-muted border-bottom pb-2 mb-4">
+      <% if @user.experiences.any? %>
+        <% experience = @user.experiences.order(created_at: :desc).first %>
+        <% if experience.present? %>
+          <%= experience.company_name %>
+        <% else %>
+          No experience
+        <% end %>
+      <% else %>
+        No experience details available
+      <% end %>
+    </p>
+
+    <!-- Edit Button -->
+    <div class="text-center mt-4">
+      <button class="btn btn-outline-primary btn-sm px-4" data-action="click->profile#editProfile">
+        Edit Details
+      </button>
     </div>
   </div>
+</div>
+
+<!-- Form for editing details -->
+<%= form_with model: @user, local: false, id: "editUserForm", data: { remote: true } do |f| %>
+  <div class="card mt-3 edit-profile" id="profileEdit">
+    <div class="card-body">
+      <h5>Edit Details</h5>
+
+      <!-- Intro -->
+      <div class="mb-4">
+        <label for="introInput" class="form-label"><strong>Profile Intro</strong></label>
+        <%= f.text_area :intro, id: "introInput", class: "form-control", rows: 2, placeholder: "Write your intro here" %>
+      </div>
+
+      <!-- Education (Only one entry) -->
+      <div class="mb-4">
+        <h5 class="mb-3">Education</h5>
+        <% if @user.educations.any? %>
+          <% education = @user.educations.order(created_at: :desc).first %> <!-- Lấy bản ghi education mới nhất -->
+          <%= f.fields_for :educations, education do |education_form| %>
+            <div class="mb-3 p-3 border rounded">
+              <%= education_form.label :school_name, "School Name", class: "form-label" %>
+              <%= education_form.text_field :school_name, class: "form-control", placeholder: "Enter school name", value: education.school_name %>
+            </div>
+          <% end %>
+        <% else %>
+          <p>No education details available to edit.</p>
+        <% end %>
+      </div>
+
+      <!-- Experience (Only one entry) -->
+      <div class="mb-4">
+        <h5 class="mb-3">Experience</h5>
+        <% if @user.experiences.any? %>
+          <% experience = @user.experiences.order(created_at: :desc).first %> <!-- Lấy bản ghi education mới nhất -->
+          <%= f.fields_for :experiences, experience do |experience_form| %>
+            <div class="mb-3 p-3 border rounded">
+              <%= experience_form.label :company_name, "Company Name", class: "form-label" %>
+              <%= experience_form.text_field :company_name, class: "form-control", placeholder: "Enter company name", value: experience.company_name %>
+            </div>
+          <% end %>
+        <% else %>
+          <p>No education details available to edit.</p>
+        <% end %>
+      </div>
+
+      <div class="text-end">
+        <%= f.submit "Save Changes", class: "btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+<% end %>
