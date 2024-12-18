@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy ]
-  before_action :user_params_update, only: [:update]
+  # before_action :user_params_update, only: [:update]
 
   # GET /users or /users.json
   def index
@@ -9,6 +9,8 @@ class UsersController < ApplicationController
 
   # GET /users/1 or /users/1.json
   def show
+    @user.educations.build if @user.educations.empty?
+    @user.experiences.build if @user.experiences.empty?
   end
 
   # GET /users/new
@@ -36,21 +38,24 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1 or /users/1.json
   def update
     respond_to do |format|
-      if @user.update(user_params_update)
-        format.html { redirect_to @user, notice: "User was successfully updated." }
+      if @user.update(user_params)
+        format.html { redirect_to user_url(@user), notice: "User was successfully updated." }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        format.json { render json: @user.errors.full_messages, status: :unprocessable_entity }
       end
     end
   end
 
   # DELETE /users/1 or /users/1.json
   def destroy
-    @user = User.find(params[:id])
-    @user.destroy
-    redirect_to users_path, notice: 'User was successfully deleted.'
+    @user.destroy!
+
+    respond_to do |format|
+    format.html { redirect_to user_url, notice: "User was successfully destroyed." }
+    format.json { head :no_content }
+    end
   end
 
   private
@@ -61,10 +66,10 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:name, :email, :phone_number, :encrypted_password)
+      params.require(:user).permit(:name, :email, :phone_number, :encrypted_password, :intro, experiences_attributes: [:company_name], educations_attributes: [:school_name])
     end
 
-    def user_params_update
-      params.require(:user).permit(:name, :email, :phone_number, :encrypted_password)
-    end
+    # def user_params_update
+    #   params.require(:user).permit(:name, :email, :phone_number, :encrypted_password, :intro, experiences_attributes: [:company_name], educations_attributes: [:school_name])
+    # end
 end
