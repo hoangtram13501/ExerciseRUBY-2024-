@@ -11,9 +11,16 @@
         <h3><%= @user.name %></h3>
         <p class="text-muted">Your Account</p>
         <!-- Buttons Section -->
-        <div class="mt-3">
-          <%= link_to 'Add Story', '#', class: 'btn btn-secondary me-2' %>
-          <%= link_to 'Edit Profile', '#', class: 'btn btn-primary' %>
+        <div class="mt-3" data-controller="friendship">
+          <% if current_user == @user %>
+            <!-- Hiển thị "Add Story" và "Edit Profile" nếu là trang của chính người dùng hiện tại -->
+            <%= link_to 'Add Story', '#', class: 'btn btn-secondary me-2' %>
+            <%= link_to 'Edit Profile', '#', class: 'btn btn-warning' %>
+          <% else %>
+            <div id="friendship-buttons-<%= user.id %>">
+              <%= friendship_button(user) %>
+            </div>
+          <% end %>
         </div>
       </div>
 </div>

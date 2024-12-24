@@ -13,6 +13,12 @@ Rails.application.routes.draw do
       }
       resources :posts, only: %i[index create]
       resources :comments, only: %i[index create]
+      resources :friendships, only: %i[create index destroy]do
+        member do
+          delete '/cancel_request', to: 'friendships#cancel_request'
+          delete '/unfriend', to: 'friendships#unfriend'
+        end
+      end
     end
   end
 end

@@ -1,0 +1,30 @@
+<% if current_user == @user %>
+  <div class="mt-4 p-3 border rounded shadow-sm bg-light">
+    <h5 class="mb-3">Friend Requests</h5>
+
+    <div class="friend-requests">
+      <% if @friend_requests.present? %>
+        <% @friend_requests.each do |friendship| %>
+          <div class="friend-request d-flex align-items-center mb-3 p-2 border rounded bg-white">
+            <!-- Avatar người gửi yêu cầu -->
+            <%= image_tag friendship.user.avatar.attached? ? friendship.user.avatar : "https://via.placeholder.com/40", class: "rounded-circle me-3", width: 40, height: 40 %>
+
+            <!-- Thông tin người gửi yêu cầu -->
+            <div class="friend-info flex-grow-1">
+              <h6 class="mb-1"><%= friendship.user.name %></h6>
+              <p class="text-muted small mb-0">Mutual Friend: 5</p> <!-- Tạm thời điền số bạn chung -->
+            </div>
+
+            <!-- Nút Accept -->
+            <%= button_to "Accept", accept_friendship_path(friendship), method: :patch, class: "btn btn-sm btn-success me-2" %>
+
+            <!-- Nút Delete -->
+            <%= button_to "Delete", delete_friendship_path(friendship), method: :delete, class: "btn btn-sm btn-danger" %>
+          </div>
+        <% end %>
+      <% else %>
+        <p>No pending friend requests.</p>
+      <% end %>
+    </div>
+  </div>
+<% end %>
