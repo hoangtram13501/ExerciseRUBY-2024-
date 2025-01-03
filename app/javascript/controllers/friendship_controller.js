@@ -97,6 +97,17 @@ export default class extends Controller {
         }
     }
 
+    cancelFriend(event) {
+        this.deleteFriend();
+
+
+    }
+    acceptFriend(event) {
+        const id = $(event.target).data("id");
+        console.log("accept " + id)
+
+    }
+
     getAuthToken() {
         const token = localStorage.getItem('authToken');
         if (!token) {

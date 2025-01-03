@@ -10,6 +10,8 @@ class UsersController < ApplicationController
   def show
     @user.educations.build if @user.educations.empty?
     @user.experiences.build if @user.experiences.empty?
+    @friendship = current_user.friendships.where(friend_id: @user.id).first
+    @friendship_requests = Friendship.where(friend_id: @user.id, status: User::STATUSES[:pending])
   end
 
   # GET /users/new
