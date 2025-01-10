@@ -44,8 +44,8 @@ class Api::V1::FriendshipsController < Api::ApplicationController
 
   def cancel_request
     friendship =
-    if param[:id].present?
-      Friendship.ind_by_id(params[:id])
+    if params[:id].present?
+      Friendship.find_by_id(params[:id])
     else 
       Friendship.by_user_id_friend_id(friendship_params[:user_id], friendship_params[:friend_id])
     end

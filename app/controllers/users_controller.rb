@@ -1,17 +1,16 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy ]
 
-  # GET /users or /users.json
   def index
     @users = User.all
   end
 
-  # GET /users/1 or /users/1.json
   def show
     @user.educations.build if @user.educations.empty?
     @user.experiences.build if @user.experiences.empty?
     @friendship = current_user.friendships.where(friend_id: @user.id).first
     @friendship_requests = Friendship.where(friend_id: @user.id, status: User::STATUSES[:pending])
+    @friend_requests = Friendship.where(friend_id: current_user.id, status: 0).includes(:user)
   end
 
   # GET /users/new
