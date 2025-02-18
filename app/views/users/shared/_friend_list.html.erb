@@ -1,0 +1,11 @@
+<div class="mt-4 p-4 border rounded shadow-sm bg-white">
+  <h5 class="mb-4 text-primary">Friends (<%= @friend_list.count %>)</h5>
+  <ul class="list-group">
+    <% @friend_list.each do |friend| %>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <span class="friend-name text-dark"><%= friend.name %></span>
+        <span class="badge bg-primary rounded-pill">Friend</span>
+      </li>
+    <% end %>
+  </ul>
+</div>

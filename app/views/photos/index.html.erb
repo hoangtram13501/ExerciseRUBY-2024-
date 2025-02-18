@@ -1,0 +1,14 @@
+<!-- app/views/photos/index.html.erb -->
+<div class="image-gallery-container border rounded p-3">
+  <div class="d-flex flex-wrap">
+    <% @images.each do |image| %>
+      <% if image.attached? %>
+        <div class="image-container me-2 mb-2">
+          <%= image_tag image, class: "img-thumbnail", alt: "Photo", width: 90 %>
+        </div>
+      <% else %>
+        <p>No image available</p>
+      <% end %>
+    <% end %>
+  </div>
+</div>

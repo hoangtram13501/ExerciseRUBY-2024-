@@ -11,6 +11,7 @@
       <%= render 'users/shared/intro',  user: @user %>
       <%= render 'users/shared/photo'%>
       <% if current_user == @user %>
+      <%= render 'users/shared/friend_list'%>
       <%= render 'users/shared/friend_suggest',friend_requests: @friend_requests %>
       <% end %>
     </div>

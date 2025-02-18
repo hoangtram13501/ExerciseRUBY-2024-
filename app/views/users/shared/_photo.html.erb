@@ -1,11 +1,32 @@
-
-<div class="card">
-    <div class="card-body">
-        <h5>Photos</h5>
-        <div class="d-flex flex-wrap">
-            <%= image_tag 'https://via.placeholder.com/150.png?text=Profile+Picture', class: 'img-thumbnail', alt: 'Photo 1', width: '90' %>
-            <%= image_tag 'https://via.placeholder.com/150.png?text=Profile+Picture', class: 'img-thumbnail ms-2', alt: 'Photo 2', width: '90' %>
+<div class="image-gallery-container border rounded p-3" data-controller="photos">
+  <h5 class="text-center mb-4">Photos</h5>
+  <div class="d-flex flex-wrap">
+    <% @limit_images.each do |image| %>
+      <% if image.attached? %> 
+        <div class="image-container me-2 mb-2"> 
+          <%= image_tag image, class: "img-thumbnail", alt: "Photo", width: 90 %> 
         </div>
-        <a href="#" class="d-block mt-2">See All Photos</a>
+      <% else %>
+        <p>No image available</p>
+      <% end %>
+    <% end %>
+  </div>
+
+  <li class="nav-item">
+    <%= link_to "See All Photos", "#", class: "nav-link", id: "photos-tab", data: { action: "photos#toggleVisibility" } %>
+  </li>
+
+  <div id="all-photos-container" data-photos-target="allPhotosContainer">
+    <div class="d-flex flex-wrap">
+      <% @images.each do |image| %>
+        <% if image.attached? %> 
+          <div class="image-container me-2 mb-2"> 
+            <%= image_tag image, class: "img-thumbnail", alt: "Photo", width: 90 %> 
+          </div>
+        <% else %>
+          <p>No image available</p>
+        <% end %>
+      <% end %>
     </div>
-</div>
+  </div>
+  </div>

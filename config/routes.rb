@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'photos/index'
   root 'users#index'
   
   devise_for :users, controllers: { registrations: 'users/registrations' }
@@ -20,6 +21,7 @@ Rails.application.routes.draw do
           put '/approve', to: 'friendships#approve'
         end
       end
+      resources :photos, only: [:index]
     end
   end
 end

@@ -59,7 +59,7 @@ class Api::V1::FriendshipsController < Api::ApplicationController
   def unfriend
     friendship = Friendship.ind_by_id(params[:id])
     if friendship
-      new_relation = Friendship.by_user_id_friend_id(friendship.friend_id, friendship.user_id)
+      new_relation = Friendship.find_by(user_id: friendship.friend_id, friend_id: friendship.user_id)
       new_relation&.destroy
       friendship&.destroy
       render json: { message: "unfriend ok" }, status: :ok

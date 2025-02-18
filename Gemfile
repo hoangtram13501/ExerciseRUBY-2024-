@@ -89,3 +89,7 @@ gem 'mysql2'
 gem "jquery-rails"
 gem "image_processing", "~> 1.2"
 gem 'kaminari'
+gem "ruby-vips"
+gem 'redis', '>= 4.0.1'
+gem 'redis-rails'
+gem 'sidekiq'
