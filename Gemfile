@@ -93,3 +93,4 @@ gem "ruby-vips"
 gem 'redis', '>= 4.0.1'
 gem 'redis-rails'
 gem 'sidekiq'
+gem 'faker', '~> 3.2'

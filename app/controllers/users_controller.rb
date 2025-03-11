@@ -67,6 +67,34 @@ class UsersController < ApplicationController
     end
   end
 
+  def export
+    redis = Redis.new
+    redis.set("export_status_#{current_user.id}", "processing") # Đánh dấu trạng thái export
+
+    ExportUsersJob.perform_later(current_user.id)
+
+    render json: { message: "Export started" }
+  end
+
+  def check_export_status
+    redis = Redis.new
+    status = redis.get("export_status_#{current_user.id}") || "not_started"
+    file_path = redis.get("export_file_#{current_user.id}")
+
+    render json: { status: status, file_path: file_path }
+  end
+
+  def download_export
+    redis = Redis.new
+    file_path = redis.get("export_file_#{current_user.id}")
+
+    if file_path.present? && File.exist?(file_path)
+      send_file file_path, type: 'text/csv', filename: "users_export.csv"
+    else
+      redirect_to users_path, alert: 'File không tồn tại.'
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user

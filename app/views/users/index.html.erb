@@ -7,6 +7,11 @@
 <div class="d-flex justify-content-between align-items-center mb-4">
   <h1>Users</h1>
 </div>
+<%= link_to 'Export CSV', '#', 
+      data: { controller: "export", action: "click->export#start" }, 
+      id: "export-button", 
+      class: "btn btn-primary" %>
+<span id="export-message" class="ml-2 text-muted"></span>
 
 <table class="table table-striped">
   <thead>
