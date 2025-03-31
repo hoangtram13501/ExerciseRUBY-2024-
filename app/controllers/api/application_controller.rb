@@ -1,4 +1,7 @@
 class Api::ApplicationController < ActionController::API
+  respond_to :json
+  PER_PAGE = 5
+
   def success(
     code: 200,
     serialize: nil,
@@ -36,7 +39,8 @@ class Api::ApplicationController < ActionController::API
       total_pages: objects.total_pages,
       total_count: objects.total_count,
       next_page: page == objects.total_pages ? page : page + 1,
-      prev_page: page >= 1 ? page - 1 : page
+      prev_page: page >= 1 ? page - 1 : page,
+      is_last_page: page == objects.total_pages
     }
   end
 end

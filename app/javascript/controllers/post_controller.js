@@ -108,6 +108,8 @@ export default class extends Controller {
         const comments = post.attributes.comments;
         const postElementCard = document.querySelector(`[data-post-id='${postId}']`);
         $(postElementCard).find('.mt-post-id').val(postId);
+        $(postElementCard).find('.cmt-post-id').val(postId);
+
         if (comments.length == 0 && comments.length < 5) {
             $(postElementCard).find('.view-more-btn').hide()
         }
