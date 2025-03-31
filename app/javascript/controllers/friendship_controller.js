@@ -97,7 +97,63 @@ export default class extends Controller {
         }
     }
 
-    getAuthToken() {
+    async acceptFriend(event) {
+        const token = this.getAuthToken();
+        if (!token) return;
+
+        const id = event.currentTarget.closest('.friend-request').getAttribute('data-friendship-id-value')
+
+        try {
+
+            const response = await fetch(`/api/v1/friendships/${id}/approve`, {
+                method: 'PUT',
+                body: JSON.stringify({ id }),
+                headers: this.getHeaders(token)
+            });
+
+            if (response.ok) {
+                debugger;
+                const res = await response.json();
+                $(this.element).addClass("hide");
+            } else {
+                const errorData = await response.json();
+                console.error('Failed to cancel request:', errorData);
+                alert('Failed to cancel request: ' + errorData.message);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('An error occurred. Please try again.');
+        }
+
+    }
+
+    async declineFriend(event) {
+        const token = this.getAuthToken();
+        if (!token) return;
+
+        const id = event.currentTarget.closest('.friend-request').getAttribute('data-friendship-id-value')
+        try {
+            const response = await fetch(`/api/v1/friendships/${id}/cancel_request`, {
+                method: 'DELETE',
+                body: JSON.stringify({ id }),
+                headers: this.getHeaders(token)
+            });
+
+            if (response.ok) {
+                const res = await response.json();
+                $(this.element).addClass("hide");
+            } else {
+                const errorData = await response.json();
+                console.error('Failed to decline request:', errorData);
+                alert('Failed to decline request: ' + errorData.message);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('An error occurred. Please try again.');
+        }
+    }
+
+    async getAuthToken() {
         const token = localStorage.getItem('authToken');
         if (!token) {
             console.error('No auth token found. User may not be logged in.');

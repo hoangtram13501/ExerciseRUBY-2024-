@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'photos/index'
   root 'users#index'
   
   devise_for :users, controllers: { registrations: 'users/registrations' }
@@ -17,8 +18,10 @@ Rails.application.routes.draw do
         member do
           delete '/cancel_request', to: 'friendships#cancel_request'
           delete '/unfriend', to: 'friendships#unfriend'
+          put '/approve', to: 'friendships#approve'
         end
       end
+      resources :photos, only: [:index]
     end
   end
 end
