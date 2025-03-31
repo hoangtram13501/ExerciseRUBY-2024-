@@ -22,7 +22,7 @@
         <% end %>
 
         <div class="form-group mb-3">
-          <%= f.submit "Log in", class: "btn btn-primary w-100" %>
+            <input type="button" name="commit" value="Login" class="btn btn-primary btn-lg" data-disable-with="Login", data-action="click->session#submit">
         </div>
       <% end %>
 

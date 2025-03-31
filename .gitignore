@@ -39,3 +39,6 @@ Gemfile.lock
 !/app/assets/builds/.keep
 
 /node_modules
+**/.env
+**/.rubocop_todo.yml
+**/.rubocop.yml

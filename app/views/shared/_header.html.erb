@@ -33,7 +33,7 @@
       <div class="d-flex align-items-center">
 
         <% if current_user %>
-          <%= button_to "Log out", destroy_user_session_path, method: :delete, class: "btn btn-primary" %>
+          <%= link_to 'Logout', '#', data: { controller: "logout", action: "click->logout#submit" }, class: "dropdown-item" %>
           <%= link_to 'Account', edit_user_registration_path, class: 'btn btn-outline-warning' %>
         <% else %>
           <%= link_to "Log in", new_session_path(resource_name), class: "btn btn-primary" %>
