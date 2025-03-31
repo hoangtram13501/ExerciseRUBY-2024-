@@ -34,6 +34,7 @@ export default class extends Controller {
 
             if (response.ok) {
                 const res = await response.json();
+                console.log('Data from API:', res);
                 res.data.forEach((post) => {
                     this.displayPost(post);
                 });
@@ -105,14 +106,14 @@ export default class extends Controller {
         postCard.setAttribute('data-post-id', postId);
         postElement.prepend(postClone);
         const comments = post.attributes.comments;
-        // const postElementCard = document.querySelector(`[data-post-id='${postId}']`);
-        // $(postElementCard).find('.mt-post-id').val(postId);
-        // if (comments.length == 0 && comments.length < 5) {
-        //     $(postElementCard).find('.view-more-btn').hide()
-        // }
-        // comments.forEach((comment) => {
-        //     this.displayComment(comment)
-        // });
+        const postElementCard = document.querySelector(`[data-post-id='${postId}']`);
+        $(postElementCard).find('.mt-post-id').val(postId);
+        if (comments.length == 0 && comments.length < 5) {
+            $(postElementCard).find('.view-more-btn').hide()
+        }
+        comments.forEach((comment) => {
+            this.displayComment(comment)
+        });
     }
 
     displayComment(comment) {
