@@ -1,0 +1,11 @@
+<h1>Sửa Bình luận</h1>
+<%= form_with(model: @comment, url: admin_comment_path(@comment), local: true) do |form| %>
+  <div>
+    <%= form.label :content, "Nội dung" %>
+    <%= form.text_area :content, class: "form-control" %>
+  </div>
+  <div>
+    <%= form.submit "Cập nhật", class: "btn btn-success" %>
+    <%= link_to "Hủy", admin_comments_path, class: "btn btn-secondary" %>
+  </div>
+<% end %>

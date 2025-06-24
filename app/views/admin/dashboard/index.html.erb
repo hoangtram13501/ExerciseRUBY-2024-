@@ -1,0 +1,48 @@
+<body>
+  <div class="d-flex">
+    <!-- Sidebar -->
+    <nav class="bg-dark text-white vh-100 p-3" style="width: 250px;">
+      <h4 class="text-center">Admin Panel</h4>
+      <hr class="text-white">
+
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <%= link_to admin_dashboard_path, class: "nav-link text-white d-flex align-items-center sidebar-item" do %>
+            <i class="fas fa-tachometer-alt me-2"></i> Dashboard
+          <% end %>
+        </li>
+
+        <li class="nav-item mt-2 text-uppercase fw-bold text-white-50">Quản lý</li>
+        <li class="nav-item">
+          <%= link_to admin_comments_path, class: "nav-link text-white d-flex align-items-center sidebar-item" do %>
+            <i class="fas fa-comments me-2"></i> Quản lý Bình luận
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to admin_users_path, class: "nav-link text-white d-flex align-items-center sidebar-item" do %>
+            <i class="fas fa-users me-2"></i> Quản lý User
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to admin_posts_path, class: "nav-link text-white d-flex align-items-center sidebar-item" do %>
+            <i class="fas fa-file-alt me-2"></i> Quản lý Bài đăng
+          <% end %>
+        </li>
+
+        <li class="nav-item mt-2 text-uppercase fw-bold text-white-50">Hệ thống</li>
+        <li class="nav-item">
+          <%= link_to root_path, class: "nav-link text-white d-flex align-items-center sidebar-item" do %>
+            <i class="fas fa-home me-2"></i> Quay về Trang Chủ
+          <% end %>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="flex-grow-1 p-4 bg-light" style="min-height: 100vh;">
+      <div class="container">
+        <%= yield %>
+      </div>
+    </div>
+  </div>
+</body>

@@ -15,6 +15,19 @@
 #   )
 # end
 
-10.times do |x|
-  Post.create(context: "xxxxxx")
-end
+# 10.times do |x|
+#   Post.create(context: "xxxxxx")
+# end
+
+User.create!(
+  email: "admin@example.com",
+  password: "password",
+  password_confirmation: "password",
+  role: :admin,
+  educations_attributes: [
+    { school_name: "Harvard University" }
+  ],
+  experiences_attributes: [
+    { company_name: "Google" }
+  ]
+)

@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  enum role: { user: 0, admin: 1 }
+  
   after_create :welcome_send
   include Devise::JWT::RevocationStrategies::JTIMatcher
 
